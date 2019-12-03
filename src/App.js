@@ -29,7 +29,7 @@ class App extends Component {
         <h1>ali sux</h1>
       </div>
     );
-  }
-}
+  };
+};
 
 export default withRouter(App);
