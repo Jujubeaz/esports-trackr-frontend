@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import Routes from './config/routes';
+import Navbar from './components/Navbar/Navbar';
+
+import './App.css'
 
 class App extends Component {
   state = {
@@ -9,17 +12,17 @@ class App extends Component {
   };
 
   setCurrentUser = (userId) => {
-    this.setState({ surrentUser: userId });
+    this.setState({ currentUser: userId });
     localStorage.setItem('uid', userId);
   };
 
   logout = () => {
     localStorage.removeItem('uid');
-    axios.post(`${process.env.REACT_APP_BASE_API}/auth/logout`, { withCredentials: true })
+    axios.delete(`${process.env.REACT_APP_API_URL}/auth/logout`, { withCredentials: true })
       .then(res => {
-        console.log(res);
+        localStorage.removeItem('uid');
         this.setState({ currentUser: null });
-        this.props.history.push('/login');
+        this.props.history.push('/');
       })
       .catch(err => console.log(err));
   };
@@ -27,7 +30,12 @@ class App extends Component {
   render() {
     return (
       <>
-        <Routes currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser}/>
+        <Navbar 
+          currentUser={this.state.currentUser} 
+          setCurrentUser={this.setCurrentUser}
+          logout={this.logout} />
+        <Routes 
+          currentUser={this.state.currentUser} />
       </>
     );
   };
