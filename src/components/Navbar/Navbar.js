@@ -54,7 +54,7 @@ class Navbar extends Component {
           :
           <ul>
              <span className="navlink">
-              <li>{this.props.currentUser}</li>
+              <li>Your Feed</li>
             </span>
             <span className="navlink" onClick={this.props.logout}>
               <li>Logout</li>
