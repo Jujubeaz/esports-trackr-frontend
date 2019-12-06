@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+
+import './League.css'
 
 class League extends Component {
   state = {
@@ -12,7 +15,6 @@ class League extends Component {
     this.findFilter();
   }
 
-  // ${this.props.match.params.postId}
   findFilter = () => {
     if(this.props.match.params.leagueId == 1){
       this.setState({
@@ -59,13 +61,20 @@ class League extends Component {
   render() {
     const teams = this.state.teams.map(team => {
       return (
-        <div>
-          <div key={team.TeamId}>{team.Name}</div>
-        </div>
+        <Link to={`/team/${team.TeamId}`}>
+          <div className="team">
+            <div key={team.TeamId}>{team.Name}</div>
+          </div>
+        </Link>
       )
     })
     return (
-      <div>{teams}</div>
+      <div>
+        <div className="hero"></div>
+        <div className="team-container">
+          {teams}
+        </div>
+      </div>
     );
   };
 };
