@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import './Navbar.css';
 import Signup from './Auth/Signup';
@@ -37,9 +39,11 @@ class Navbar extends Component {
         <nav className="navbar">
         {!this.props.currentUser ?
           <ul>
-            <span className="navlink">
-              <li>Home</li>
-            </span>
+            <Link to="/">
+              <span className="navlink">
+                <li>Home</li>
+              </span>
+            </Link>
             <span 
             className="navlink" 
             onClick={this.handleSignupModalOpen}>
@@ -53,6 +57,11 @@ class Navbar extends Component {
           </ul>
           :
           <ul>
+            <Link to="/">
+              <span className="navlink">
+                <li>Home</li>
+              </span>
+            </Link>
              <span className="navlink">
               <li>Your Feed</li>
             </span>
@@ -75,4 +84,4 @@ class Navbar extends Component {
   };
 };
 
-export default Navbar;
+export default withRouter(Navbar);

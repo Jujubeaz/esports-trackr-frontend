@@ -29,7 +29,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div className="hero">Twitch stream here</div>
+        <div className="twitch-player">Twitch stream here</div>
         <div className="leagues-list">
           <Link to={`/league/1`}>
             <div className="logo-container">
