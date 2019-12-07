@@ -8,11 +8,13 @@ import './League.css'
 class League extends Component {
   state = {
     teams: [],
-    filter: []
+    filter: [],
+    media: []
   }
 
   componentDidMount() {
     this.findData();
+    this.getMedia();
   }
 
   setSplash = (img) => {
@@ -67,13 +69,27 @@ class League extends Component {
       .catch(err => console.log(err));
   };
 
+  getMedia = () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/media/all`)
+      .then((res) => {
+        this.setState({
+          media: res.data.data
+        }, () => console.log(this.state.media))
+      })
+  }
+
   render() {
     const teams = this.state.teams.map(team => {
+      let teamMedia = {};
+      this.state.media.forEach(media => {
+        if (team.TeamId == media.teamId) {
+          teamMedia = media
+        }
+      })
       return (
-        <Link to={`/team/${team.TeamId}`}>
-          <div className="team">
-            <div key={team.TeamId}>{team.Name}</div>
-          </div>
+        <Link key={team.TeamId} to={`/team/${team.TeamId}`} className="team-link">
+          <div style={{backgroundImage: `url(${teamMedia.logo})`}} className="team"></div>
+          <h5 className="name">{team.Name}</h5>
         </Link>
       )
     })

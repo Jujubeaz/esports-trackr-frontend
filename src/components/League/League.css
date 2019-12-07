@@ -6,10 +6,12 @@
 }
 
 .team{
-  background-color: orange;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 10em;
   width: 10em;
-  margin: 2em;
+  margin: 2em 2em .5em 2em;
 }
 
 .team-container{
@@ -17,4 +19,13 @@
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+
+.name{
+  text-align: center;
+  color: black;
+}
+
+.team-link{
+  /* text-decoration: none; */
 }

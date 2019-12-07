@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import axios from 'axios';
 
+import "./Profile.css"
+
 class Profile extends Component {
 
   state={
     team: {},
-    players: []
+    players: [],
+    media: {}
   }
 
   componentDidMount() {
-    this.getTeamData()
+    this.getTeamData();
+    this.getMedia();
   }
 
   filterTeams = (teams) => {
@@ -37,16 +41,26 @@ class Profile extends Component {
       .catch(err => console.log(err));
   }
 
+  getMedia = () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/media/${this.props.match.params.teamId}`)
+      .then((res) => {
+        this.setState({
+          media: res.data.data
+        }, () => console.log(this.state.media))
+      })
+  }
+
   render() {
     const player = this.state.players.map(player => {
       return (
-        <div className="player">
+        <div key={player.PlayerId} className="player">
           <h4>{player.PlayerName}</h4>
         </div>
       )
     })
     return (
       <div>
+        <div className="splash" style={{backgroundImage: `url(${this.state.media.splash})`}}></div>
         <h1>{this.state.team.Name}</h1> 
         {player}
       </div>
