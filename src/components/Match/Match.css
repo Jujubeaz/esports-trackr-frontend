@@ -1,0 +1,8 @@
+.team{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 10em;
+  width: 10em;
+  margin: 2em 2em .5em 2em;
+}
