@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
+
+import CommentsContainer from '../../containers/CommentsContainer/CommentsContainer'
 
 import './Match.css'
 
@@ -54,11 +57,21 @@ class Match extends Component {
   render() {
     return(
       <div>
-        <div className="team" style={{backgroundImage: `url(${this.state.teamAMedia.logo})`}}></div>
-        <h2>{this.state.match.TeamAName}</h2>
-        <h2>VS</h2>
-        <div className="team" style={{backgroundImage: `url(${this.state.teamBMedia.logo})`}}></div>
-        <h2>{this.state.match.TeamBName}</h2>
+        <div className="title-card">
+          <Link to={`/team/${this.state.teamA}`}>
+            <div className="team" style={{backgroundImage: `url(${this.state.teamAMedia.logo})`}}></div>
+            <h3 className='team-name'>{this.state.match.TeamAName}</h3>
+          </Link>
+          <h2>VS</h2>
+          <Link to={`/team/${this.state.teamB}`}>
+            <div className="team" style={{backgroundImage: `url(${this.state.teamBMedia.logo})`}}></div>
+            <h3 className='team-name'>{this.state.match.TeamBName}</h3>
+          </Link>
+        </div>
+        <h2 className="winner">Match Winner: {this.state.match.Winner}</h2>
+        <section className="comment-section">
+          <CommentsContainer matchId={this.props.match.params.matchId}/>
+        </section>
       </div>
     )
   }
