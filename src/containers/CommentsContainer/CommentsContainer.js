@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+
+import Comment from '../../components/Comment/Comment'
 
 import './CommentsContainer.css'
 
@@ -7,7 +10,8 @@ class CommentsContainer extends Component {
 
   state = {
     comments: [],
-    content: '',
+    body: '',
+    deleteModalOpen: false
   };
 
   componentDidMount(){
@@ -29,6 +33,30 @@ class CommentsContainer extends Component {
       .catch(err => console.log(err))
   };
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  handleCommentSubmit = () => {
+    axios.post(`${process.env.REACT_APP_API_URL}/comments/${this.props.match.params.matchId}/newComment`, this.state, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      this.fetchComments();
+    })
+    .catch(err => console.log(err))
+  };
+
+  handleDeleteModalOpen = () => {
+    this.setState((prevState) => {
+      return {
+        deleteModalOpen: !prevState.deleteModalOpen
+      };
+    });
+  };
+
   render() {
     return (
       <div className="row bootstrap snippets">
@@ -39,14 +67,14 @@ class CommentsContainer extends Component {
               Comments
             </div>
             <div className="panel-body">
-              <textarea value='' onChange={this.handleChange} name="content" className="form-control" placeholder="Write a comment..." rows="3"></textarea>
+              <textarea value={this.state.body} onChange={this.handleChange} name="body" className="form-control" placeholder="Write a comment..." rows="3"></textarea>
               <br />
               <button type="button" className="btn btn-info pull-right" onClick={this.handleCommentSubmit}>Post</button>
               <div className="clearfix"></div>
               <hr />
               {this.state.comments.length ?
               <>
-              {/* <Comments comments={this.state.comments} /> */}
+              <Comment comments={this.state.comments} handleDeleteModalOpen={this.handleDeleteModalOpen}/>
               </> : <>
               No comments yet
               </>
@@ -60,4 +88,4 @@ class CommentsContainer extends Component {
   };
 };
 
-export default CommentsContainer;
+export default withRouter(CommentsContainer);

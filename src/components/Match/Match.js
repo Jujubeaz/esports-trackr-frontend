@@ -34,7 +34,7 @@ class Match extends Component {
         }, this.getMedia())
       })
       .catch(err => console.log(err))
-  }
+  };
 
   getMedia = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/media/all`)
@@ -49,22 +49,24 @@ class Match extends Component {
             this.setState({
               teamBMedia: media
             })
-          }
-        })
-      })
-  }
+          };
+        });
+      });
+  };
+
+  getComments
 
   render() {
     return(
       <div>
         <div className="title-card">
           <Link to={`/team/${this.state.teamA}`}>
-            <div className="team" style={{backgroundImage: `url(${this.state.teamAMedia.logo})`}}></div>
+            <div className="team--big" style={{backgroundImage: `url(${this.state.teamAMedia.logo})`}}></div>
             <h3 className='team-name'>{this.state.match.TeamAName}</h3>
           </Link>
           <h2>VS</h2>
           <Link to={`/team/${this.state.teamB}`}>
-            <div className="team" style={{backgroundImage: `url(${this.state.teamBMedia.logo})`}}></div>
+            <div className="team--big" style={{backgroundImage: `url(${this.state.teamBMedia.logo})`}}></div>
             <h3 className='team-name'>{this.state.match.TeamBName}</h3>
           </Link>
         </div>
