@@ -10,7 +10,8 @@ class CommentsContainer extends Component {
 
   state = {
     comments: [],
-    body: ''
+    body: '',
+    deleteModalOpen: false
   };
 
   componentDidMount(){
@@ -48,6 +49,14 @@ class CommentsContainer extends Component {
     .catch(err => console.log(err))
   };
 
+  handleDeleteModalOpen = () => {
+    this.setState((prevState) => {
+      return {
+        deleteModalOpen: !prevState.deleteModalOpen
+      };
+    });
+  };
+
   render() {
     return (
       <div className="row bootstrap snippets">
@@ -65,7 +74,7 @@ class CommentsContainer extends Component {
               <hr />
               {this.state.comments.length ?
               <>
-              <Comment comments={this.state.comments} />
+              <Comment comments={this.state.comments} handleDeleteModalOpen={this.handleDeleteModalOpen}/>
               </> : <>
               No comments yet
               </>
