@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DeleteConfirmation from '../DeleteConfirmation/DeleteConfirmation';
+import EditComment from '../EditComment/EditComment';
 
 import Button from 'react-bootstrap/Button';
 import './Comment.css';
@@ -18,7 +19,18 @@ const Comment = (props) => {
         </div>
         <div>
             <Button className='remove' onClick={props.handleDeleteModalOpen} variant="outline-primary">Delete</Button>
-            <DeleteConfirmation deleteModalOpen={props.deleteModalOpen} handleDeleteModalOpen={props.handleDeleteModalOpen} />
+            <DeleteConfirmation 
+              deleteModalOpen={props.deleteModalOpen} 
+              handleDeleteModalOpen={props.handleDeleteModalOpen} 
+              commentId={comment._id} 
+              handleDelete={() => props.handleDelete(comment._id)}/>
+        </div>
+        <div>
+            <Button className='edit' onClick={props.handleEditModalOpen} variant="outline-primary">Edit</Button>
+            <EditComment 
+              comment={comment}
+              editModalOpen={props.editModalOpen}
+              handleEditModalOpen={props.handleEditModalOpen}/>
         </div>
       </li>
     )

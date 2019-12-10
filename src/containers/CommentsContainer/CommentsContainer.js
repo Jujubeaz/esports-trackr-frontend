@@ -11,7 +11,8 @@ class CommentsContainer extends Component {
   state = {
     comments: [],
     body: '',
-    deleteModalOpen: false
+    deleteModalOpen: false,
+    editModalOpen: false
   };
 
   componentDidMount(){
@@ -45,6 +46,9 @@ class CommentsContainer extends Component {
     })
     .then((res) => {
       this.fetchComments();
+      this.setState({
+        body: ''
+      })
     })
     .catch(err => console.log(err))
   };
@@ -53,6 +57,27 @@ class CommentsContainer extends Component {
     this.setState((prevState) => {
       return {
         deleteModalOpen: !prevState.deleteModalOpen
+      };
+    });
+  };
+
+  handleDelete = (commentId) => {
+    console.log(commentId)
+    axios.delete(`${process.env.REACT_APP_API_URL}/comments/${commentId}`)
+      .then((res) => {
+        this.handleDeleteModalOpen()
+        const filterDeleted = this.state.comments.filter(comment => {return comment._id !== commentId})
+        this.setState({
+          comments: filterDeleted
+        })
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleEditModalOpen = () => {
+    this.setState((prevState) => {
+      return {
+        editModalOpen: !prevState.editModalOpen
       };
     });
   };
@@ -74,7 +99,13 @@ class CommentsContainer extends Component {
               <hr />
               {this.state.comments.length ?
               <>
-              <Comment comments={this.state.comments} handleDeleteModalOpen={this.handleDeleteModalOpen}/>
+              <Comment 
+                comments={this.state.comments} 
+                handleDeleteModalOpen={this.handleDeleteModalOpen} 
+                deleteModalOpen={this.state.deleteModalOpen} 
+                handleDelete={this.handleDelete}
+                editModalOpen={this.state.editModalOpen}
+                handleEditModalOpen={this.handleEditModalOpen}/>
               </> : <>
               No comments yet
               </>
