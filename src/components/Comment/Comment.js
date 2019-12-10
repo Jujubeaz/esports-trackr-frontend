@@ -1,15 +1,13 @@
 import React from 'react';
 
-import DeleteConfirmation from '../DeleteConfirmation/DeleteConfirmation';
-import EditComment from '../EditComment/EditComment';
-
 import Button from 'react-bootstrap/Button';
 import './Comment.css';
 
 const Comment = (props) => {
   const comments = props.comments.map(comment => {
+    // console.log(comment._id)
     return (
-      <li>
+      <li key={comment._id}>
         <div>
           <span>
             <small>{comment.createdAt}</small>
@@ -18,19 +16,10 @@ const Comment = (props) => {
           <p>{comment.body}</p>
         </div>
         <div>
-            <Button className='remove' onClick={props.handleDeleteModalOpen} variant="outline-primary">Delete</Button>
-            <DeleteConfirmation 
-              deleteModalOpen={props.deleteModalOpen} 
-              handleDeleteModalOpen={props.handleDeleteModalOpen} 
-              commentId={comment._id} 
-              handleDelete={() => props.handleDelete(comment._id)}/>
+            <Button className='remove' onClick={() => props.handleDeleteModalOpen(comment._id)} variant="outline-primary">Delete</Button>
         </div>
         <div>
-            <Button className='edit' onClick={props.handleEditModalOpen} variant="outline-primary">Edit</Button>
-            <EditComment 
-              comment={comment}
-              editModalOpen={props.editModalOpen}
-              handleEditModalOpen={props.handleEditModalOpen}/>
+            <Button className='edit' onClick={() => props.handleEditModalOpen(comment)} variant="outline-primary">Edit</Button>
         </div>
       </li>
     )

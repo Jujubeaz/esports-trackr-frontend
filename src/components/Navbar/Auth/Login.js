@@ -25,7 +25,6 @@ class Login extends Component {
         .then((res) => {
           console.log(res.data)
           this.props.setCurrentUser(res.data.data);
-          // this.props.history.push(`/users/${res.data.data}`);
           this.props.history.push(`/`);
           this.props.handleLoginModalOpen();
         })
