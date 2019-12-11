@@ -28,11 +28,6 @@ class Navbar extends Component {
     });
   };
 
-  // handleProfileRedirect = () => {
-  //   const userId = localStorage.getItem('uid');
-  //   this.props.history.push(`/users/${userId}`);
-  // };
-
   render () {
     return (
       <>

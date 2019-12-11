@@ -37,14 +37,19 @@ class CommentsContainer extends Component {
     axios.get(`${process.env.REACT_APP_API_URL}/comments/all`)
       .then((res) => {
         const comments = this.filterComments(res.data.data);
+        const reversedComments = comments.reverse()
         this.setState({
-          comments: comments
+          comments: reversedComments
         }, () => console.log(this.state.comments))
       })
       .catch(err => console.log(err))
   };
 
   handleCommentSubmit = () => {
+    !this.props.currentUser ?
+
+    alert("please log in first!")
+    :
     axios.post(`${process.env.REACT_APP_API_URL}/comments/${this.props.match.params.matchId}/newComment`, this.state, {
       withCredentials: true,
     })
