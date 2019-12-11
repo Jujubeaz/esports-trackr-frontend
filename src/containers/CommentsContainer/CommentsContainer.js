@@ -5,13 +5,18 @@ import { withRouter } from 'react-router-dom';
 import Comment from '../../components/Comment/Comment'
 
 import './CommentsContainer.css'
+import DeleteConfirmation from '../../components/DeleteConfirmation/DeleteConfirmation';
+import EditComment from '../../components/EditComment/EditComment';
 
 class CommentsContainer extends Component {
 
   state = {
     comments: [],
     body: '',
-    deleteModalOpen: false
+    editBody: '',
+    deleteModalOpen: false,
+    editModalOpen: false,
+    selectedComment: {}
   };
 
   componentDidMount(){
@@ -20,6 +25,12 @@ class CommentsContainer extends Component {
 
   filterComments = (commentsArr) => {
     return commentsArr.filter(comment => {return comment.match == this.props.matchId})
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   };
 
   fetchComments = () => {
@@ -33,26 +44,48 @@ class CommentsContainer extends Component {
       .catch(err => console.log(err))
   };
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
-
   handleCommentSubmit = () => {
     axios.post(`${process.env.REACT_APP_API_URL}/comments/${this.props.match.params.matchId}/newComment`, this.state, {
       withCredentials: true,
     })
     .then((res) => {
       this.fetchComments();
+      this.setState({
+        body: ''
+      })
     })
     .catch(err => console.log(err))
   };
 
-  handleDeleteModalOpen = () => {
+  handleDeleteModalOpen = (comment) => {
     this.setState((prevState) => {
       return {
+        selectedComment: comment,
         deleteModalOpen: !prevState.deleteModalOpen
+      };
+    });
+  };
+
+  handleDelete = (commentId) => {
+    axios.delete(`${process.env.REACT_APP_API_URL}/comments/${commentId}`)
+      .then((res) => {
+        console.log(commentId)
+        this.handleDeleteModalOpen()
+        const filterDeleted = this.state.comments.filter(comment => {return comment._id !== commentId})
+        this.setState({
+          comments: filterDeleted
+        })
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleEditModalOpen = (comment) => {
+    const commentBody = comment.body;
+    this.setState((prevState) => {
+      return {
+        editModalOpen: !prevState.editModalOpen,
+        editBody: commentBody,
+        selectedComment: comment
       };
     });
   };
@@ -74,7 +107,27 @@ class CommentsContainer extends Component {
               <hr />
               {this.state.comments.length ?
               <>
-              <Comment comments={this.state.comments} handleDeleteModalOpen={this.handleDeleteModalOpen}/>
+              <Comment 
+                comments={this.state.comments} 
+                handleDeleteModalOpen={this.handleDeleteModalOpen} 
+                deleteModalOpen={this.state.deleteModalOpen} 
+                handleDelete={this.handleDelete}
+                editModalOpen={this.state.editModalOpen}
+                handleEditModalOpen={this.handleEditModalOpen}
+                handleEdit={this.handleEdit}
+                fetchComments={this.fetchComments}/>
+              <DeleteConfirmation 
+                deleteModalOpen={this.state.deleteModalOpen} 
+                handleDeleteModalOpen={this.handleDeleteModalOpen} 
+                handleDelete={() => this.handleDelete(this.state.selectedComment)}/>
+              <EditComment 
+                editBody={this.state.editBody}
+                selectedComment={this.state.selectedComment._id}
+                editModalOpen={this.state.editModalOpen}
+                handleEditModalOpen={this.handleEditModalOpen}
+                handleChange={this.handleChange}
+                handleEdit={this.handleEdit}
+                fetchComments={this.fetchComments}/>
               </> : <>
               No comments yet
               </>

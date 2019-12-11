@@ -62,9 +62,6 @@ class Navbar extends Component {
                 <li>Home</li>
               </span>
             </Link>
-             <span className="navlink">
-              <li>Your Feed</li>
-            </span>
             <span className="navlink" onClick={this.props.logout}>
               <li>Logout</li>
             </span>
