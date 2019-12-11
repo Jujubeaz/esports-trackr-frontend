@@ -12,7 +12,7 @@ class EditComment extends Component {
     const newComment = {
       body: this.props.editBody
     }
-    axios.put(`${process.env.REACT_APP_API_URL}/comments/${this.props.selectedComment}`, newComment, {
+    axios.put(`${process.env.REACT_APP_API_URL}/comments/${this.props.selectedComment._id}`, newComment, {
       withCredentials: true,
     })
       .then((res) => {

@@ -4,7 +4,7 @@
   background-position: center;
 }
 
-.team-name{
+.team-splash-title{
   position: absolute;
   top: 35%;
   left: 50%;
@@ -13,4 +13,21 @@
   padding: 1em;
   font-size: 4em;
   border-radius: .5em;
+}
+
+.team-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.section-title{
+  padding-top: .5em;
+  font-size: 3em;
+}
+
+.roster{
+  display: flex;
+  flex-direction: column;
 }

@@ -122,7 +122,7 @@ class CommentsContainer extends Component {
                 handleDelete={() => this.handleDelete(this.state.selectedComment)}/>
               <EditComment 
                 editBody={this.state.editBody}
-                selectedComment={this.state.selectedComment._id}
+                selectedComment={this.state.selectedComment}
                 editModalOpen={this.state.editModalOpen}
                 handleEditModalOpen={this.handleEditModalOpen}
                 handleChange={this.handleChange}

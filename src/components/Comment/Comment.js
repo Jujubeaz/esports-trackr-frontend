@@ -5,7 +5,6 @@ import './Comment.css';
 
 const Comment = (props) => {
   const comments = props.comments.map(comment => {
-    // console.log(comment._id)
     return (
       <li key={comment._id}>
         <div>
@@ -15,17 +14,22 @@ const Comment = (props) => {
           <strong>{comment.user.name}</strong>
           <p>{comment.body}</p>
         </div>
+        {this.props.currentUser === comment.user ? 
         <div>
-            <Button className='remove' onClick={() => props.handleDeleteModalOpen(comment._id)} variant="outline-primary">Delete</Button>
+          <div>
+              <Button className='remove' onClick={() => props.handleDeleteModalOpen(comment._id)} variant="outline-primary">Delete</Button>
+          </div>
+          <div>
+              <Button className='edit' onClick={() => props.handleEditModalOpen(comment)} variant="outline-primary">Edit</Button>
+          </div>
         </div>
-        <div>
-            <Button className='edit' onClick={() => props.handleEditModalOpen(comment)} variant="outline-primary">Edit</Button>
-        </div>
+        :
+        <div></div>
+        }
       </li>
     )
   })
 
-  
   return (
     <ul>
       {comments}
