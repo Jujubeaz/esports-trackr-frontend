@@ -25,6 +25,7 @@ const Comment = (props) => {
     )
   })
 
+  
   return (
     <ul>
       {comments}
