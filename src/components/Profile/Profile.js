@@ -100,9 +100,9 @@ class Profile extends Component {
     const matches = this.state.matches.map(match => {
       return (
         <Link key={match.GameId} to={`/match/${match.GameId}`}>
-        <div>
-          <h3>{match.TeamAName} vs {match.TeamBName}</h3>
-        </div>
+          <div>
+            <h3>{match.TeamAName} vs {match.TeamBName}</h3>
+          </div>
         </Link>
       )
     })
@@ -110,8 +110,9 @@ class Profile extends Component {
       <div>
         <div 
           className="splash" 
-          style={{backgroundImage: `url(${this.state.media.splash})`}}></div>
-        <h1>{this.state.team.Name}</h1> 
+          style={{backgroundImage: `url(${this.state.media.splash})`}}>
+            <h1 className="team-name">{this.state.team.Name}</h1> 
+          </div>
         {player}
         {matches}
       </div>

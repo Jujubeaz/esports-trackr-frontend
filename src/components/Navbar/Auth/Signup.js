@@ -25,7 +25,7 @@ class Signup extends Component {
     })
       .then((res) => {
         console.log(res)
-        this.props.setCurrentUser(res.data.message._id);
+        this.props.setCurrentUser(res.data.data._id);
         this.props.handleSignupModalOpen();
       })
       .catch(err => console.log(err))
