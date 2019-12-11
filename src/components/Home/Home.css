@@ -5,8 +5,10 @@
 }
 
 .twitch-player{
-  background-color: firebrick;
-  height: 25em;
+  background-image: url('https://cdn.vox-cdn.com/thumbor/HIZ93O6poGofY0iCQkZJVtV09-U=/0x0:1100x733/1200x800/filters:focal(0x0:1100x733)/cdn.vox-cdn.com/assets/3598899/lolesports.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 30em;
 }
 
 .leagues-list{

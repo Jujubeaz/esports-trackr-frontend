@@ -93,7 +93,7 @@ class Profile extends Component {
     const player = this.state.players.map(player => {
       return (
         <div key={player.PlayerId} className="player">
-          <h4>{player.PlayerName}</h4>
+          <h6>{player.PlayerName}</h6>
         </div>
       )
     })
@@ -101,7 +101,7 @@ class Profile extends Component {
       return (
         <Link key={match.GameId} to={`/match/${match.GameId}`}>
           <div>
-            <h3>{match.TeamAName} vs {match.TeamBName}</h3>
+            <h5>{match.TeamAName} vs {match.TeamBName}</h5>
           </div>
         </Link>
       )
@@ -111,10 +111,20 @@ class Profile extends Component {
         <div 
           className="splash" 
           style={{backgroundImage: `url(${this.state.media.splash})`}}>
-            <h1 className="team-name">{this.state.team.Name}</h1> 
+            <h1 className="team-splash-title">{this.state.team.Name}</h1> 
           </div>
-        {player}
-        {matches}
+          <div className="team-content">
+            <div>
+              <h2 className="section-title">Roster</h2>
+              <div className="roster">
+                {player}
+              </div>
+            </div>
+            <div className="matches">
+              <h2 className="section-title">Recent Games</h2>
+              {matches}
+            </div>
+          </div>
       </div>
     )
   }

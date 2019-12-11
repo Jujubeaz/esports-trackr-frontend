@@ -1,0 +1,7 @@
+.comment-buttons{
+  display: flex;
+}
+
+.comment-button{
+  padding: 0 .5em .5em;
+}
