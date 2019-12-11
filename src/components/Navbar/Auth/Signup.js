@@ -41,19 +41,19 @@ class Signup extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Name</label>
-            <input onChange={this.handleChange} className="form-control form-control-lg" type="text" id="name" name="name" value={this.state.name} />
+            <input onChange={this.handleChange} className="form-control form-control-lg" type="text" id="name" name="name" value={this.state.name} required/>
           </div>
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input onChange={this.handleChange} className="form-control form-control-lg" type="email" id="email" name="email" value={this.state.email} />
+            <input onChange={this.handleChange} className="form-control form-control-lg" type="email" id="email" name="email" value={this.state.email} required/>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input onChange={this.handleChange} className="form-control form-control-lg" type="password" id="password" name="password" value={this.state.password} />
+            <input onChange={this.handleChange} className="form-control form-control-lg" type="password" id="password" name="password" value={this.state.password} required/>
           </div>
           <div className="form-group">
             <label htmlFor="password2">Confirm Password</label>
-            <input onChange={this.handleChange} className="form-control form-control-lg" type="password" id="password2" name="password2" value={this.state.password2} />
+            <input onChange={this.handleChange} className="form-control form-control-lg" type="password" id="password2" name="password2" value={this.state.password2} required/>
           </div>
           <button className="btn btn-primary float-right" type="submit">Sign Up</button>
         </form>

@@ -11,6 +11,12 @@
   height: 30em;
 }
 
+@media only screen and (max-width: 768px) {
+  .twitch-player{
+    height: 20em;
+  }
+}
+
 .leagues-list{
   display: flex;
   flex-direction: row;
