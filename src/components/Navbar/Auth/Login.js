@@ -41,11 +41,11 @@ class Login extends Component {
           <form onSubmit={this.handleSubmit} >
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input onChange={this.handleChange} className="form-control form-control-lg" type="text" id="email" name="email" value={this.state.email} />
+              <input onChange={this.handleChange} className="form-control form-control-lg" type="text" id="email" name="email" value={this.state.email} required/>
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input onChange={this.handleChange} className="form-control form-control-lg" type="password" id="password" name="password" value={this.state.password} />
+              <input onChange={this.handleChange} className="form-control form-control-lg" type="password" id="password" name="password" value={this.state.password} required/>
             </div>
             <button className="btn btn-primary float-right" type="submit">Login</button>
           </form>
