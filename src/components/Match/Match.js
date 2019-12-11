@@ -72,7 +72,7 @@ class Match extends Component {
         </div>
         <h2 className="winner">Match Winner: {this.state.match.Winner}</h2>
         <section className="comment-section">
-          <CommentsContainer matchId={this.props.match.params.matchId}/>
+          <CommentsContainer matchId={this.props.match.params.matchId} currentUser={this.props.currentUser}/>
         </section>
       </div>
     )

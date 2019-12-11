@@ -102,12 +102,13 @@ class CommentsContainer extends Component {
             <div className="panel-body">
               <textarea value={this.state.body} onChange={this.handleChange} name="body" className="form-control" placeholder="Write a comment..." rows="3"></textarea>
               <br />
-              <button type="button" className="btn btn-info pull-right" onClick={this.handleCommentSubmit}>Post</button>
+              <button type="button" className="btn btn-primary pull-right" onClick={this.handleCommentSubmit}>Post</button>
               <div className="clearfix"></div>
               <hr />
               {this.state.comments.length ?
               <>
               <Comment 
+                currentUser={this.props.currentUser}
                 comments={this.state.comments} 
                 handleDeleteModalOpen={this.handleDeleteModalOpen} 
                 deleteModalOpen={this.state.deleteModalOpen} 

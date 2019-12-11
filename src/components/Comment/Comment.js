@@ -4,22 +4,21 @@ import Button from 'react-bootstrap/Button';
 import './Comment.css';
 
 const Comment = (props) => {
+  console.log(props)
   const comments = props.comments.map(comment => {
+    
     return (
       <li key={comment._id}>
         <div>
-          <span>
-            <small>{comment.createdAt}</small>
-          </span>
           <strong>{comment.user.name}</strong>
           <p>{comment.body}</p>
         </div>
-        {this.props.currentUser === comment.user ? 
-        <div>
-          <div>
+        {props.currentUser == comment.user._id ? 
+        <div className="comment-buttons">
+          <div className="comment-button">
               <Button className='remove' onClick={() => props.handleDeleteModalOpen(comment._id)} variant="outline-primary">Delete</Button>
           </div>
-          <div>
+          <div className="comment-button">
               <Button className='edit' onClick={() => props.handleEditModalOpen(comment)} variant="outline-primary">Edit</Button>
           </div>
         </div>
