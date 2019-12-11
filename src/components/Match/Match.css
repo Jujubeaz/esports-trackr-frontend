@@ -12,6 +12,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
   padding-bottom: 3em;
 }
 
@@ -24,3 +25,12 @@
   text-align: center;
 }
 
+.comment-section{
+  max-width: 60em;
+  position: relative;
+  margin: 0 auto;
+}
+
+.vs{
+  padding: 1em 2em;
+}

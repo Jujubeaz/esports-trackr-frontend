@@ -64,7 +64,7 @@ class Match extends Component {
             <div className="team--big" style={{backgroundImage: `url(${this.state.teamAMedia.logo})`}}></div>
             <h3 className='team-name'>{this.state.match.TeamAName}</h3>
           </Link>
-          <h2>VS</h2>
+          <h2 className="vs">VS</h2>
           <Link to={`/team/${this.state.teamB}`}>
             <div className="team--big" style={{backgroundImage: `url(${this.state.teamBMedia.logo})`}}></div>
             <h3 className='team-name'>{this.state.match.TeamBName}</h3>
