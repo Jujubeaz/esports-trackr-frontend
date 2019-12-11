@@ -1,0 +1,27 @@
+.hero{
+  height: 25em;
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://es.me/wp-content/uploads/2017/12/NA-LCS-format-1-1.jpg");
+}
+
+.team{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 10em;
+  width: 10em;
+  margin: 2em 2em .5em 2em;
+}
+
+.team-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.name{
+  text-align: center;
+  color: black;
+}

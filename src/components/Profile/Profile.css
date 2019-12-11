@@ -1,0 +1,16 @@
+.splash{
+  height: 65vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.team-name{
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(230, 230, 230, 0.7);
+  padding: 1em;
+  font-size: 4em;
+  border-radius: .5em;
+}

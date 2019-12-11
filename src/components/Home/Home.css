@@ -1,0 +1,17 @@
+.league-logo{
+  max-width: 25em;
+  max-height: 15em;
+  margin-top: 5em;
+}
+
+.twitch-player{
+  background-color: firebrick;
+  height: 25em;
+}
+
+.leagues-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
